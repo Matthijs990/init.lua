@@ -1,6 +1,6 @@
-require("matthijs.set")
-require("matthijs.remap")
-require("matthijs.lazy_init")
+require("matthijs990.set")
+require("matthijs990.remap")
+require("matthijs990.lazy_init")
 
 -- set background empty for transparency
 -- vim.cmd [[hi Normal ctermbg=NONE guibg=NONE]]

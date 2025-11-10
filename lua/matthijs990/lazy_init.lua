@@ -9,7 +9,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = "matthijs.lazy",
+    spec = "matthijs990.lazy",
     change_detection = {
         notify = false,
     },

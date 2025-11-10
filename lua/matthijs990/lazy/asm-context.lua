@@ -1,5 +1,5 @@
 return {
-    'matthijs/asm-context.nvim', -- Path to your local plugin directory
+    'matthijs990/asm-context.nvim', -- Path to your local plugin directory
     requires = {
         'nvim-treesitter/nvim-treesitter',
     },
