@@ -98,6 +98,34 @@ return {
                         }
                     }
                 end,
+                ["tinymist"] = function()
+                    require("lspconfig").tinymist.setup {
+                        capabilities = capabilities,
+                        single_file_support = true,
+                        settings = {
+                            formatterMode = "typstyle",
+                        },
+                        on_attach = function(client, bufnr)
+                            -- Your generic LSP keymaps are already set in init.lua
+                            -- This adds the keymap specific to tinymist
+                            vim.keymap.set(
+                                "n",
+                                "<leader>cP",
+                                function()
+                                    local buf_name = vim.api.nvim_buf_get_name(bufnr)
+                                    local file_name = vim.fn.fnamemodify(buf_name, ":t")
+                                    vim.lsp.buf.execute_command({
+                                        command = "tinymist.pinMain",
+                                        arguments = { buf_name },
+                                        bufnr = bufnr
+                                    })
+                                    vim.notify("Tinymist: Pinned " .. file_name, vim.log.levels.INFO)
+                                end,
+                                { desc = "Typst: Pin main file", buffer = bufnr }
+                            )
+                        end
+                    }
+                end,
             }
         })
 
