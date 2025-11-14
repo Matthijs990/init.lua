@@ -98,6 +98,22 @@ return {
                         }
                     }
                 end,
+                ["rust_analyzer"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.rust_analyzer.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            ["rust-analyzer"] = {
+                                checkOnSave = {
+                                    command = "clippy", -- Use clippy for additional lints
+                                },
+                                cargo = {
+                                    allFeatures = true,
+                                },
+                            }
+                        }
+                    }
+                end,
                 ["tinymist"] = function()
                     require("lspconfig").tinymist.setup {
                         capabilities = capabilities,
