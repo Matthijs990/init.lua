@@ -105,7 +105,8 @@ return {
                         settings = {
                             ["rust-analyzer"] = {
                                 checkOnSave = {
-                                    command = "clippy", -- Use clippy for additional lints
+                                    command = "clippy",
+                                    extraArgs = { "--", "-A", "clippy::print_stdout", "-A", "clippy::print_stderr" },
                                 },
                                 cargo = {
                                     allFeatures = true,
