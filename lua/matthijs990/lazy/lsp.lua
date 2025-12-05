@@ -18,6 +18,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 c = { "clang-format" },
+                cs = { "csharpier" },
                 javascript = { "prettier" },
                 json = { "prettier" },
                 lua = { "stylua" },
@@ -54,6 +55,7 @@ return {
                 "asm_lsp",
                 "ts_ls",
                 "texlab",
+                "csharp_ls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -141,6 +143,13 @@ return {
                                 { desc = "Typst: Pin main file", buffer = bufnr }
                             )
                         end
+                    }
+                end,
+                ["csharp_ls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.csharp_ls.setup {
+                        capabilities = capabilities,
+                        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
                     }
                 end,
             }
