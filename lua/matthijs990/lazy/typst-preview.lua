@@ -23,14 +23,24 @@ return {
           return
         end
         
-        local output_path = filepath:gsub("%.typ$", "." .. output_extension)
+        -- For PNG/SVG, use pattern for multi-page export
+        local output_path
+        if output_extension == "png" or output_extension == "svg" then
+          output_path = filepath:gsub("%.typ$", "-{p}." .. output_extension)
+        else
+          output_path = filepath:gsub("%.typ$", "." .. output_extension)
+        end
         
         vim.notify("Exporting to " .. output_extension:upper() .. "...", vim.log.levels.INFO)
         
         vim.fn.jobstart({ "typst", "compile", filepath, output_path }, {
           on_exit = function(_, exit_code)
             if exit_code == 0 then
-              vim.notify("Successfully exported to: " .. output_path, vim.log.levels.INFO)
+              if output_extension == "png" or output_extension == "svg" then
+                vim.notify("Successfully exported pages to: " .. output_path:gsub("{p}", "*"), vim.log.levels.INFO)
+              else
+                vim.notify("Successfully exported to: " .. output_path, vim.log.levels.INFO)
+              end
             else
               vim.notify("Export failed with exit code: " .. exit_code, vim.log.levels.ERROR)
             end
