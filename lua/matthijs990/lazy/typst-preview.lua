@@ -1,6 +1,7 @@
 return {
   'chomosuke/typst-preview.nvim',
   lazy = false, -- or ft = 'typst'
+  root_dir = vim.fn.getcwd(),
   version = '1.*',
   opts = {}, -- lazy.nvim will implicitly calls `setup {}`
   config = function()
