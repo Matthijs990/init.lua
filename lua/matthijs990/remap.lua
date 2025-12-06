@@ -32,3 +32,27 @@ vim.keymap.set("v", "#", [[y?\V<C-R>=escape(@",'/\')<CR><CR>]], { desc = "Search
 
 -- LSP code actions
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
+
+-- Insert code block with triple backticks (Markdown/Typst)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "typst" },
+  callback = function()
+    -- Insert code block in normal mode
+    vim.keymap.set("n", "<leader>cb", function()
+      local line = vim.api.nvim_win_get_cursor(0)[1]
+      vim.api.nvim_buf_set_lines(0, line, line, false, { "```", "", "```" })
+      vim.api.nvim_win_set_cursor(0, { line + 1, 0 })
+      vim.cmd("startinsert!")
+    end, { buffer = true, desc = "Insert code block" })
+    
+    -- Wrap selection in code block in visual mode
+    vim.keymap.set("v", "<leader>cb", function()
+      local start_line = vim.fn.line("'<") - 1
+      local end_line = vim.fn.line("'>")
+      vim.api.nvim_buf_set_lines(0, end_line, end_line, false, { "```" })
+      vim.api.nvim_buf_set_lines(0, start_line, start_line, false, { "```" })
+      vim.api.nvim_win_set_cursor(0, { start_line + 1, 3 })
+      vim.cmd("normal! A")
+    end, { buffer = true, desc = "Wrap selection in code block" })
+  end
+})
