@@ -11,12 +11,24 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Set tab width to 4 spaces
+-- Set tab width to 4 spaces (forced everywhere)
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.shiftround = true
+
+-- Force 4 spaces for all filetypes (override any plugin defaults)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = true
+  end
+})
 
 -- set newline at enf of file
 vim.opt.endofline = true
