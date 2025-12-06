@@ -44,15 +44,5 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_win_set_cursor(0, { line + 1, 0 })
       vim.cmd("startinsert!")
     end, { buffer = true, desc = "Insert code block" })
-    
-    -- Wrap selection in code block in visual mode
-    vim.keymap.set("v", "<leader>cb", function()
-      local start_line = vim.fn.line("'<") - 1
-      local end_line = vim.fn.line("'>")
-      vim.api.nvim_buf_set_lines(0, end_line, end_line, false, { "```" })
-      vim.api.nvim_buf_set_lines(0, start_line, start_line, false, { "```" })
-      vim.api.nvim_win_set_cursor(0, { start_line + 1, 3 })
-      vim.cmd("normal! A")
-    end, { buffer = true, desc = "Wrap selection in code block" })
   end
 })
