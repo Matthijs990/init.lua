@@ -17,7 +17,8 @@ return {
                 "query",
                 "vim",
                 "vimdoc",
-                "asm"
+                "asm",
+                "rust"
             },
             -- Autoinstall languages that are not installed
             auto_install = true,
