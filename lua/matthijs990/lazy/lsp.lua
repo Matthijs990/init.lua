@@ -55,7 +55,6 @@ return {
                 "asm_lsp",
                 "ts_ls",
                 "texlab",
-                "csharp_ls",
                 "tinymist",
             },
             handlers = {
@@ -144,13 +143,6 @@ return {
                                 { desc = "Typst: Pin main file", buffer = bufnr }
                             )
                         end
-                    }
-                end,
-                ["csharp_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.csharp_ls.setup {
-                        capabilities = capabilities,
-                        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
                     }
                 end,
             }
