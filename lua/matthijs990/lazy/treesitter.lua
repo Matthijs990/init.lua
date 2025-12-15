@@ -24,7 +24,7 @@ return {
             -- Autoinstall languages that are not installed
             auto_install = true,
             highlight = {
-                enable = true,
+                enable = vim.fn.has('win32') == 0,  -- Enable on non-Windows only (Windows has parser compilation issues)
                 disable = { "latex" },
                 additional_vim_regex_highlighting = { "ruby", "latex" },
             },
