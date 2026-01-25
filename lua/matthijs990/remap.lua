@@ -33,6 +33,10 @@ vim.keymap.set("v", "#", [[y?\V<C-R>=escape(@",'/\')<CR><CR>]], { desc = "Search
 -- LSP code actions
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
 
+
+-- remove search highlight
+vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Remove search highlight" })
+
 -- Insert code block with triple backticks (Markdown/Typst)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "typst" },
