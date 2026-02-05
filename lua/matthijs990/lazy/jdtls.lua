@@ -35,6 +35,10 @@ return {
                 '-data', workspace_dir,
             },
             root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
+            handlers = {
+                ['$/progress'] = function() end,
+                ['language/status'] = function() end,
+            },
             settings = {
                 java = {
                     signatureHelp = { enabled = true },
