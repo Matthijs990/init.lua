@@ -4,6 +4,9 @@ return {
     config = function()
         local jdtls = require('jdtls')
 
+        -- Disable diagnostics while in insert mode
+        vim.diagnostic.config({ update_in_insert = false })
+
         -- Workspace directory (unique per project)
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspace/' .. project_name
@@ -35,9 +38,8 @@ return {
                 '-data', workspace_dir,
             },
             root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
-            handlers = {
-                ['$/progress'] = function() end,
-                ['language/status'] = function() end,
+            flags = {
+                debounce_text_changes = 1000,  -- Only send changes 1s after you stop typing
             },
             settings = {
                 java = {
