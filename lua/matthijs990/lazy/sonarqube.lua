@@ -3,6 +3,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
+    event = "InsertLeave",
     config = function()
         -- Filter out sonarqube notifications
         local original_notify = vim.notify
@@ -20,4 +21,3 @@ return {
         })
     end,
 }
-
