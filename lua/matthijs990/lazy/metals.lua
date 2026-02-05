@@ -1,6 +1,6 @@
 return {
   "scalameta/nvim-metals",
-  ft = { "scala", "sbt", "java" },
+  ft = { "scala", "sbt" },
   opts = function()
     local metals_config = require("metals").bare_config()
 

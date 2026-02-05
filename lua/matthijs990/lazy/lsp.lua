@@ -56,6 +56,7 @@ return {
                 "ts_ls",
                 "texlab",
                 "tinymist",
+                "jdtls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
