@@ -39,7 +39,23 @@ return {
             },
             root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
             flags = {
-                debounce_text_changes = 1000,  -- Only send changes 1s after you stop typing
+                debounce_text_changes = 1000,
+            },
+            handlers = {
+                -- Only show progress messages when NOT in insert mode
+                ['$/progress'] = function(err, result, ctx)
+                    if vim.fn.mode() == 'i' then
+                        return  -- Ignore in insert mode
+                    end
+                    -- Use default handler when not in insert mode
+                    vim.lsp.handlers['$/progress'](err, result, ctx)
+                end,
+                ['language/status'] = function(err, result, ctx)
+                    if vim.fn.mode() == 'i' then
+                        return  -- Ignore in insert mode
+                    end
+                    vim.notify(result.message, vim.log.levels.INFO, { title = 'jdtls' })
+                end,
             },
             settings = {
                 java = {
