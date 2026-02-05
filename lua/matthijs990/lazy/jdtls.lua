@@ -3,14 +3,23 @@ return {
     ft = { "java" },
     dependencies = {
         "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
     },
     config = function()
         local jdtls = require("jdtls")
         local mason_registry = require("mason-registry")
 
+        -- Ensure mason registry is refreshed
+        mason_registry.refresh()
+
+        -- Check if jdtls is installed
+        if not mason_registry.is_installed("jdtls") then
+            vim.notify("jdtls is not installed. Run :MasonInstall jdtls", vim.log.levels.WARN)
+            return
+        end
+
         -- Find jdtls installation
-        local jdtls_pkg = mason_registry.get_package("jdtls")
-        local jdtls_path = jdtls_pkg:get_install_path()
+        local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
         local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 
         -- Detect OS for config folder
