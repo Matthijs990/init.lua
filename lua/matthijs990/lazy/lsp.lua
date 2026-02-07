@@ -56,7 +56,6 @@ return {
                 "ts_ls",
                 "texlab",
                 "tinymist",
-                "jdtls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -64,9 +63,6 @@ return {
                         capabilities = capabilities
                     }
                 end,
-
-                -- jdtls is configured via ftplugin/java.lua
-                jdtls = function() end,
 
                 zls = function()
                     local lspconfig = require("lspconfig")
