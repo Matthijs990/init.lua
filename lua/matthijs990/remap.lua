@@ -1,4 +1,5 @@
 -- Project view, file explorer
+-- 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Move selected lines up/down

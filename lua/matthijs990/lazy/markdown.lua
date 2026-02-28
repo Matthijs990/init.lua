@@ -8,8 +8,8 @@ return {
             port = 8421,
             open_browser = true,
             debounce_ms = 300,
-            mermaid_renderer = "rust",
-            scroll_sync = true,
+            mermaid_renderer = "js",
+            -- scroll_sync = true,
         })
 
         vim.keymap.set("n", "<leader>mps", "<cmd>MarkdownPreview<cr>", { desc = "Markdown: Start preview" })
