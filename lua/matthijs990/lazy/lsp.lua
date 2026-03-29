@@ -12,6 +12,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "b0o/SchemaStore.nvim",
     },
 
     config = function()
@@ -56,11 +57,23 @@ return {
                 "ts_ls",
                 "texlab",
                 "tinymist",
+                "jsonls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
+                    }
+                end,
+                ["jsonls"] = function()
+                    require("lspconfig").jsonls.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            json = {
+                                schemas = require('schemastore').json.schemas(),
+                                validate = { enable = true },
+                            },
+                        },
                     }
                 end,
 
@@ -175,7 +188,7 @@ return {
                 completeopt = 'menu,menuone,noinsert, noselect',
             },
             -- experimental = {
-            --     ghost_text = true, -- This shows the suggestion as virtual text
+            --      ghost_text = true, -- This shows the suggestion as virtual text
             -- },
         })
 
