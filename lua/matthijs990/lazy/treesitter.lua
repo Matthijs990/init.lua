@@ -19,7 +19,8 @@ return {
                 "vim",
                 "vimdoc",
                 "asm",
-                "rust"
+                "rust",
+                "lean"
             },
             -- Autoinstall languages that are not installed
             auto_install = true,
