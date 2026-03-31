@@ -23,6 +23,7 @@ return {
 
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [f]ind" })
+        vim.keymap.set('n', '<leader>ps', require('telescope.builtin').live_grep, { desc = '[P]roject [S]earch' })
         vim.keymap.set("n", "<leader><leader>", function()
             builtin.buffers({
                 sort_lastused = true,

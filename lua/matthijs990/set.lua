@@ -1,6 +1,6 @@
 -- Set space as the leader key for custom mappings
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "  "
 
 -- Disable swapfiles
 vim.opt.swapfile = false
