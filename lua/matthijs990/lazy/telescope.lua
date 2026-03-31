@@ -24,11 +24,11 @@ return {
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [f]ind" })
         vim.keymap.set('n', '<leader>ps', require('telescope.builtin').live_grep, { desc = '[P]roject [S]earch' })
-        vim.keymap.set("n", "<leader><leader>", function()
+        vim.keymap.set("n", "<leader>fb", function()
             builtin.buffers({
                 sort_lastused = true,
             })
-        end , { desc = "[ ] Find existing buffers" })
+        end , { desc = "[F]ind [Buffer] Find existing buffers" })
 
         -- Shortcut for searching your Neovim configuration files
         vim.keymap.set("n", "<leader>sn", function()
